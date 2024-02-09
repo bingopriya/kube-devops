@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shorten
+  namespace: url-shortener
+  labels:
+    app: url-shorten
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url-shorten
+  template:
+    metadata:
+      labels:
+        app: url-shorten
+    spec:
+      containers:
+      - name: url-shortener
+        image: bingopriya/url_shortener
+
+        ports:
+        - name: http
+          containerPort: 8000
+        imagePullPolicy: IfNotPresent
